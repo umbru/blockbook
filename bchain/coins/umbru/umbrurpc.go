@@ -59,10 +59,6 @@ func (b *UmbruRPC) Initialize() error {
 
 // GetBlock returns block with given hash
 func (b *UmbruRPC) GetBlock(hash string, height uint32) (*bchain.Block, error) {
-	if hash == "" && height < firstBlockWithSpecialTransactions {
-		return b.BitcoinRPC.GetBlock(hash, height)
-	}
-
 	var err error
 	if hash == "" && height > 0 {
 		hash, err = b.GetBlockHash(height)
